@@ -1,13 +1,14 @@
 
 // Game Logics
-var maxTries = 10;
-var guessedLetters = [];
-var currentWordIndex;
+var maxTries = 6;
+var wrongLetters = [];
+var currentWordIndex = "";
 var remainingGuesses = 0;
-var guessingWord = [];
+var answerDisplay = [];
 var gameStart = false;
 var gameFinish = false;
 var wins = false;
+var currentWrdLetters = [];
 
 
 // Array listing all words used in the game
@@ -23,19 +24,16 @@ var currentWord = document.getElementById("current-word");
 var guessesRemaining = document.getElementById("guesses-remaining");
 var alreadyGuessed = document.getElementById("already-guessed");
 
-// On Game Start Up
 
-
-
-function Hangman() {
-
-// Generates random word from words array
-currentword = words[Math.floor(Math.random() * words.length)];
-
-// Creating answer array loop
-var answerArray = [];
-for (var i = 0; i < word.length; i++) {}
-
-
-
+// New Game
+function newGame() {
+    // Generates random word from words array
+    currentWordIndex = words[Math.floor(Math.random() * words.length)];
+        console.log("The current word is: " + currentWordIndex);
+    
+    currentWrdLetters = currentWordIndex.split("");
+        console.log("The number of letters are: " + currentWrdLetters)
+    
+    numBlanks = currentWrdLetters.length;
+        console.log("number of letters " + numBlanks)
 }
