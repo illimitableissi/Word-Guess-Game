@@ -1,6 +1,7 @@
 
 // Array listing total number of words
 var NumberOfWords = 5
+
 // Array listing all words used in the game
 var words = ["reunion", "genesis", "overload", "maximum", "soveriegn"]
 
@@ -13,17 +14,12 @@ var directiontext = document.getElementById("directions text");
 var displaywins = document.getElementById("display-wins");
 var guessesremaining = document.getElementById("guesses-remaining");
 var alreadyguessed = document.getElementById("already-guessed");
+var winstext = document.getElementById("wins-text");
+var lossestext = document.getElementById("losses-text");
 
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
-
-    Math.random().toString(36)
-
-
-
-
-    
+    alreadyguessed.textContent = event.key
 }
-
    
