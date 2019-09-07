@@ -15,7 +15,7 @@ var remainingGuesses = 8;
 
 
 // Array listing all words used in the game
-var words = ["reunion", "genesis", "overload", "maximum", "sovereign"]
+var words = ["subzero", "quanchi", "shinnok", "raiden", "cyrax", "sector", "linkuei"]
 
 // Array listing every letter of the alphabet
 var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
@@ -25,6 +25,7 @@ var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 var displayWins = document.getElementById("display-wins");
 var displayLosses = document.getElementById("display-losses");
 var currentWord = document.getElementById("current-word");
+
 var guessesRemaining = document.getElementById("guesses-remaining");
 var alreadyGuessed = document.getElementById("already-guessed");
 
@@ -35,27 +36,32 @@ function newGame() {
     // Generates random word from words array
     currentWordIndex = words[Math.floor(Math.random() * words.length)];
         console.log("The current word is: " + currentWordIndex);
-    
+    // Splits word up by letters
     currentWrdLetters = currentWordIndex.split("");
         console.log("The number of letters are: " + currentWrdLetters)
-    
+    // shows number of blanks needed for randomly generated word
     numBlanks = currentWrdLetters.length;
         console.log("The number of listters in current word: " + numBlanks);
-
-    guessesRemaining = 8;
+   
+    //resets variables
+    remainingGuesses = 8;
     wrongLetters = [];
     answerDisplay = [];
 
+    // pushed underscore to answerdisplay array for total number of letters for word
     for (i = 0; i < numBlanks; i++) {
-        answerDisplay.push("_")
+        answerDisplay.push("_");
+        console.log(answerDisplay)
     }
-
-    currentWord.textcontent = answerDisplay.join(" ");
-    guessesRemaining.textcontent = "Number of Guesses Remaining: " + " " + remainingGuesses
+    //reset HTML variables
+    currentWord.textContent = "Current Word: " + " " + answerDisplay.join(" ");
+    guessesRemaining.textContent = "Number of Guesses Remaining: " + " " + remainingGuesses;
     displayWins.textContent = "Wins: " + " " + wins;
-    displayLosses.textcontent = "Losses: " + " " + losses;
+    displayLosses.textContent = "Losses: " + " " + losses;
         
 }
 
 
 
+
+newGame()
