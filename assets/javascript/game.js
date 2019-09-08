@@ -3,8 +3,6 @@
 var wrongLetters = [];
 var currentWordIndex = "";
 var answerDisplay = [];
-var gameStart = false;
-var gameFinish = false;
 var currentWrdLetters = [];
 var numBlanks = 0;
 
@@ -25,9 +23,11 @@ var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 var displayWins = document.getElementById("display-wins");
 var displayLosses = document.getElementById("display-losses");
 var currentWord = document.getElementById("current-word");
-
 var guessesRemaining = document.getElementById("guesses-remaining");
 var alreadyGuessed = document.getElementById("already-guessed");
+
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "./assets/sounds/Get Over Here!.mp3");
 
 
 // New Game
@@ -61,7 +61,72 @@ function newGame() {
         
 }
 
+// Letter Check
+function checkLetter(letter) {
+    if (KeyboardEvent.code >= 65 && KeyboardEvent.code <= 90) {
+
+		//Check if the letter guessed is one of the letters in the word
+		var correctLetter = false;
+
+			for ( var i = 0; i < numBlanks; i++) {
+				if(currentWordIndex[i] == letter) {
+				    correctLetter = true;
+					}
+			    }
+
+		//Check where the correct letter is located on the word, then add to html
+				if(correctLetter) {
+				for ( var i = 0; i < numBlanks; i++) {
+					if(currentWordIndex[i] == letter) {
+					    answerDisplay[i] = letter;
+					        }
+					    }
+					}
+
+		//If the letter isn't part of the word
+					else {
+						wrongLetters.push(letter);
+						remainingGuesses--
+					}
+                }
+
+}
+
+// Round by Round
+function round(){
+
+    currentWord.textContent = "Current Word: " + " " + answerDisplay.join(" ");
+    guessesRemaining.textContent = "Number of Guesses Remaining: " + " " + remainingGuesses;
+    alreadyGuessed.textContent = "Already guessed: " + " " + wrongLetters.join(" ")
+
+
+//When user wins
+    if (currentWrdLetters.toString() == answerDisplay.toString()) {
+        wins++;
+        alert("You guessed " + currentWord + " ")
+        audioElement.play()
+        displayWins.textContent = "Wins: " + " " + wins;
+
+        newGame();
+        alreadyGuessed.textContent = "Already guessed: " + " " + " ";
+
+    } else if (remainingGuesses =0) {
+        losses++;
+        alert("FATALITY")
+        displayLosses.textContent = "Losses: " + " " + losses;
+        newGame();
+        alreadyGuessed.textContent = "Already guessed: " + " " + " ";
+    }
+}
+
+// Play the Game
+newGame();
+
+document.onkeydown = function(event) {
+
+}
+round()
 
 
 
-newGame()
+
